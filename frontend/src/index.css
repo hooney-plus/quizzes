@@ -1,0 +1,395 @@
+/* =====================================================
+   GEOQUIZ — Design System
+   ===================================================== */
+
+:root {
+  --bg:            #080b18;
+  --bg-card:       #0e1124;
+  --bg-card-alt:   #131729;
+  --border:        rgba(255, 255, 255, 0.07);
+  --border-active: rgba(255, 255, 255, 0.18);
+
+  --accent:        #6366f1;
+  --accent-hover:  #4f52d9;
+  --accent-glow:   rgba(99, 102, 241, 0.25);
+
+  --success:       #10b981;
+  --success-bg:    rgba(16, 185, 129, 0.12);
+  --success-border:rgba(16, 185, 129, 0.35);
+
+  --error:         #ef4444;
+  --error-bg:      rgba(239, 68, 68, 0.12);
+  --error-border:  rgba(239, 68, 68, 0.35);
+
+  --gold:          #f59e0b;
+  --gold-bg:       rgba(245, 158, 11, 0.12);
+
+  --text-primary:  #e2e8f0;
+  --text-secondary:#64748b;
+  --text-muted:    #334155;
+
+  --radius-sm:   8px;
+  --radius-md:   14px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
+
+  --shadow-card: 0 4px 32px rgba(0, 0, 0, 0.5);
+  --shadow-btn:  0 2px 12px rgba(99, 102, 241, 0.35);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  min-height: 100vh;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Layout ── */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% -10%, rgba(99,102,241,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(16,185,129,0.06) 0%, transparent 60%),
+    var(--bg);
+}
+
+/* ── Card ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+
+/* ── Buttons ── */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 20px;
+  border-radius: var(--radius-md);
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.btn:active { transform: scale(0.98); }
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: var(--shadow-btn);
+}
+.btn-primary:hover:not(:disabled) { background: var(--accent-hover); box-shadow: 0 4px 20px rgba(99,102,241,0.5); }
+.btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { border-color: var(--border-active); color: var(--text-primary); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  font-size: 13px;
+  padding: 8px;
+}
+.btn-ghost:hover { color: var(--text-secondary); }
+
+/* ── Input ── */
+.input {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.18s;
+}
+.input:focus { border-color: var(--accent); background: rgba(99,102,241,0.06); }
+.input::placeholder { color: var(--text-muted); }
+
+/* ── Badges / Tags ── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.tag-accent  { background: rgba(99,102,241,0.15); color: #818cf8; border: 1px solid rgba(99,102,241,0.25); }
+.tag-success { background: var(--success-bg); color: var(--success); border: 1px solid var(--success-border); }
+.tag-error   { background: var(--error-bg); color: var(--error); border: 1px solid var(--error-border); }
+.tag-gold    { background: var(--gold-bg); color: var(--gold); border: 1px solid rgba(245,158,11,0.3); }
+
+/* ── Progress ── */
+.progress-track {
+  height: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Timer ── */
+.timer-track {
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.timer-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 1s linear, background 0.3s ease;
+}
+.timer-fill.safe    { background: var(--success); }
+.timer-fill.warning { background: var(--gold); }
+.timer-fill.danger  { background: var(--error); }
+
+/* ── Answer options ── */
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.option:hover:not(:disabled) {
+  border-color: var(--border-active);
+  background: rgba(255,255,255,0.06);
+  transform: translateX(2px);
+}
+.option:disabled { cursor: default; }
+.option.selected {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+}
+.option.correct {
+  border-color: var(--success-border);
+  background: var(--success-bg);
+  color: var(--success);
+}
+.option.wrong {
+  border-color: var(--error-border);
+  background: var(--error-bg);
+  color: var(--error);
+}
+
+.option-letter {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.07);
+  font-size: 12px;
+  font-weight: 700;
+}
+.option.selected .option-letter { background: var(--accent); color: #fff; }
+.option.correct .option-letter  { background: var(--success); color: #fff; }
+.option.wrong .option-letter    { background: var(--error); color: #fff; }
+
+/* ── Overlay ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+  padding: 24px;
+}
+
+.feedback-card {
+  border-radius: var(--radius-xl);
+  padding: 36px 44px;
+  text-align: center;
+  min-width: 280px;
+  border: 1px solid;
+}
+.feedback-card.success {
+  background: var(--success-bg);
+  border-color: var(--success-border);
+  box-shadow: 0 0 60px rgba(16,185,129,0.15);
+}
+.feedback-card.error {
+  background: var(--error-bg);
+  border-color: var(--error-border);
+  box-shadow: 0 0 60px rgba(239,68,68,0.15);
+}
+.feedback-card.timeout {
+  background: rgba(245,158,11,0.10);
+  border-color: rgba(245,158,11,0.35);
+  box-shadow: 0 0 60px rgba(245,158,11,0.10);
+}
+
+/* ── Streak badge ── */
+.streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--gold-bg);
+  color: var(--gold);
+  border: 1px solid rgba(245,158,11,0.3);
+}
+
+/* ── XP Bar ── */
+.xp-bar-wrap {
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  margin-bottom: 16px;
+}
+.xp-bar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.xp-value {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  transition: color 0.3s ease;
+}
+
+/* ── Leaderboard ── */
+.lb-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  transition: background 0.15s;
+}
+.lb-row:hover { background: rgba(255,255,255,0.04); }
+.lb-row.first {
+  background: var(--gold-bg);
+  border-color: rgba(245,158,11,0.25);
+}
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+/* ── Stat box ── */
+.stat-box {
+  flex: 1;
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  text-align: center;
+}
+
+/* ── Error banner ── */
+.error-banner {
+  padding: 16px 20px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--error-border);
+  background: var(--error-bg);
+  color: var(--error);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes popIn {
+  0%   { transform: scale(0.85); opacity: 0; }
+  65%  { transform: scale(1.04); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  60%       { transform: translateX(6px); }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes countPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(0.95); }
+}
+@keyframes xpBump {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+@keyframes streakPop {
+  0%   { transform: scale(0.6) rotate(-10deg); opacity: 0; }
+  70%  { transform: scale(1.15) rotate(3deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.anim-fadeup   { animation: fadeUp    0.35s ease forwards; }
+.anim-fadein   { animation: fadeIn    0.25s ease forwards; }
+.anim-pop      { animation: popIn     0.3s  ease forwards; }
+.anim-shake    { animation: shake     0.35s ease; }
+.anim-spin     { animation: spin      1s    linear infinite; }
+.anim-pulse    { animation: countPulse 1s   ease infinite; }
+.anim-xpbump   { animation: xpBump    0.4s  ease; }
+.anim-streak   { animation: streakPop 0.4s  ease forwards; }
